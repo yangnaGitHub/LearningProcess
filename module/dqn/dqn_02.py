@@ -15,15 +15,8 @@ from conf.conf import args
 from collections import deque
 #import os
 
-def get_section_name():
-    string = __file__
-    startpos = string.rfind('/')
-    endpos = string.rfind('.py')
-    global section
-    section = string[startpos+1:endpos]
-
 def get_conf(name, wclass='str'):
-    return args.get_option(section, name, wclass)
+    return args.get_option('dqn_02', name, wclass)
 
 class DQN():
     def __init__(self, env):
@@ -88,7 +81,6 @@ class DQN():
             else:
                 y_batch.append(reward_batch[i] + gamma*np.max(next_state_reward[i]))
 
-
         self.optimizer.run(
             feed_dict = {
                 self.input_layer:state_batch,
@@ -112,9 +104,7 @@ class DQN():
 if __name__ == '__main__':
     #args.listAlloptions()
     #有监督学习的评测工具是数据,强化学习的评测工具是环境
-    #需要提供一个环境给Agent运行,才能评测Agent的策略的优劣
-    get_section_name()
-    
+    #需要提供一个环境给Agent运行,才能评测Agent的策略的优劣    
     env = gym.make(get_conf('env_name'))
     
     #动作空间

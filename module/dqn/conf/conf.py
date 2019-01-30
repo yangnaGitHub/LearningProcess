@@ -12,7 +12,7 @@ import os
 
 class myargs():
     def __init__(self, filepath='./conf/conf.cfg'):
-        os.chdir('E:\\AboutStudy\\code\\python\\DRL')
+        os.chdir('E:\\AboutStudy\\code\\python\\LearningProcess\\module\\dqn')
         self.version = '3.0.0'
         self.params = configparser.ConfigParser()
         self.params.read(filepath, encoding='utf-8')
@@ -42,5 +42,3 @@ class myargs():
     def listAlloptions(self):
         allsections = self.getAllsections()
         print([self.getAlloption(section) for section in allsections])
-
-args = myargs()

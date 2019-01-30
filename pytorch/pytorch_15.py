@@ -143,7 +143,7 @@ if __name__ == '__main__':
     plt.xlabel('step')
     plt.ylabel('test loss')
     plt.ylim((0, 2000))
-    plt.legend(loc='bast')
+    plt.legend(loc='best')
     
     [net.eval() for net in nets]
     preds = [net(test_x)[0] for net in nets]
