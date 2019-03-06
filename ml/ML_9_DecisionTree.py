@@ -122,3 +122,4 @@ def predict(d, forest):
     for p in pd:
         if number < pd[p]:
             number = pd[p]
+            temp = p

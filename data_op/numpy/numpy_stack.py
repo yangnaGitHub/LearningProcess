@@ -8,6 +8,7 @@ Created on Mon Aug 13 16:01:18 2018
 """
 import numpy as np
 
+#https://morvanzhou.github.io/tutorials/data-manipulation/np-pd/4-1-speed-up-numpy/
 #垂直方向的concat
 data1 = np.array([[1, 2, 3]])
 print('data1:', data1.shape)

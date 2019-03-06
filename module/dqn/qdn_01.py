@@ -90,3 +90,10 @@ if __name__ == '__main__':
     q_table = rl()
     print('\nQ-table:\n')
     print(q_table)
+
+#不理解环境model-free:Q-Learning+sarsa+Policy-Gradients
+#理解环境model-base:想像预判
+#基于概率:每种动作都可能选中只是P不同
+#基于价值:选择某个价值最高的动作,连续动作无能为力Policy-Gradients
+#基于概率Actor-Crictic基于价值
+#回合更新 + 单步更新(更有价值)
