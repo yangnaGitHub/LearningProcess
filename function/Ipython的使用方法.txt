@@ -1,0 +1,33 @@
+1.Markdown中添加图片
+ 格式:![图片标签](图片源 src)
+ 例子:![jupyter](文件路径)
+2.
+https://www.cnblogs.com/laoduan/p/7641698.html
+https://blog.csdn.net/winnerineast/article/details/52274556
+
+
+目的:克服神经网络层数加深,收敛速度变慢常常导致梯度消失或是梯度爆炸  
+手法:通过引入批标准化来规范层的输入,固定输入的均值和方差  
+![一般神经网络](./bn_1.png)
+一般神经网络x->$h_1$:
+$$s_1=w_1*x+b$$
+$$h_1=ReLU(s_1)$$
+加上BN的神经网络x->$h_1$:
+$$s_1=w_1*x+b$$
+$$s_2=\frac{s_1-\mu_B}{\sqrt{\sigma_B^2+\varepsilon}},其中\mu_B=\frac{1}{m}\sum_{i=0}^{m}(w_1*x_i),\sigma_B^2=\frac{1}{m}\sum_{i=0}^{m}(w_1*x_i-\mu_B)^2$$
+$$s_3=\gamma*s_2+\beta$$
+$$h_1=ReLU(s_3)$$
+说明:  
+$s_2$中的$\varepsilon$是为了避免除数为0时所使用的微小正数  
+$s_2$基本会被限制在正态分布下,使得网络的表达能力下降,所以引入两个新的参数$\gamma,\beta$,这两个参数是在训练网络的时候自己学习得到的  
+$s_2$乘以$\gamma$调整数值大小,再加上$\beta$增加偏移后得到$s_3$  
+
+计算结果值的分布对于激励函数很重要,对于数据值大多分布在这个区间的数据,才能进行更有效的传递  
+没有normalize的数据,使用激活函数以后,激活值大部分都分布到了饱和阶段,就是大部分的激活值不是-1,就是1  
+normalize以后,大部分的激活值在每个分布区间都还有存在,传递到下一层神经网络进行后续计算才会更有价值
+
+https://blog.csdn.net/testcs_dn/article/details/78957685
+&nbsp;
+
+https://www.cnblogs.com/laoduan/p/7641698.html
+https://blog.csdn.net/winnerineast/article/details/52274556

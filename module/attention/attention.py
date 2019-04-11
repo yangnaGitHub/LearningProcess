@@ -85,21 +85,21 @@ def Dense(inputs, output_size, bias=True, seq_len=None):
     return outputs
     
 def attention(Q, K, V, c_head, size_per_head, Q_len=None, V_len=None):
-    #Q(x, y, z) => Q(x, y, c_head*size_per_head)
+    #Q(q_x, q_y, q_z) => Q(q_x, q_y, c_head*size_per_head)
     Q = Dense(Q, c_head*size_per_head, False)#Q线性变换
-    #Q(x, y, c_head*size_per_head) => Q(x, y, c_head, size_per_head)
+    #Q(q_x, q_y, c_head*size_per_head) => Q(q_x, q_y, c_head, size_per_head)
     Q = tf.reshape(Q, (-1, tf.shape(Q)[1], c_head, size_per_head))
-    #QQ(x, y, c_head, size_per_head) => Q(x, c_head, y, size_per_head)
+    #QQ(q_x, q_y, c_head, size_per_head) => Q(q_x, c_head, q_y, size_per_head)
     Q = tf.transpose(Q, [0, 2, 1, 3])
     print(tf.shape(Q))
     
     K = Dense(K, c_head*size_per_head, False)#K线性变换
     K = tf.reshape(K, (-1, tf.shape(K)[1], c_head, size_per_head))
-    K = tf.transpose(K, [0, 2, 1, 3])
+    K = tf.transpose(K, [0, 2, 1, 3])#K(k_x, c_head, k_y, size_per_head)
     
     V = Dense(V, c_head*size_per_head, False)#V线性变换
     V = tf.reshape(V, (-1, tf.shape(V)[1], c_head, size_per_head))
-    V = tf.transpose(V, [0, 2, 1, 3])
+    V = tf.transpose(V, [0, 2, 1, 3])#K(v_x, c_head, v_y, size_per_head)
     
     #没有弄清楚多维矩阵的乘法:1,2,3,4*4,3,2,1=1,2,3,3
     temp = tf.matmul(Q, K, transpose_b=True) / tf.sqrt(float(size_per_head))
@@ -120,6 +120,6 @@ def attention(Q, K, V, c_head, size_per_head, Q_len=None, V_len=None):
 #temp = tf.matmul(Q, K, transpose_b=True)
 #final = tf.global_variables_initializer()
 #with tf.Session() as sess:
-#    sess.run(init)
+#    sess.run(final)
 #    print(sess.run(tf.shape(tf.transpose(V))))
 #    print(sess.run(tf.shape(final)))

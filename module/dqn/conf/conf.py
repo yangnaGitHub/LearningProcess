@@ -42,3 +42,4 @@ class myargs():
     def listAlloptions(self):
         allsections = self.getAllsections()
         print([self.getAlloption(section) for section in allsections])
+args = myargs()
