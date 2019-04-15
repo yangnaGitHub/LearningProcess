@@ -16,6 +16,10 @@ import torch.nn.functional as F
 import matplotlib.pyplot as plt
 import numpy as np
 
+#计算结果值的分布对于激励函数很重要
+对于数据值大多分布在这个区间的数据,才能进行更有效的传递
+没有normalize的数据,使用tanh激活以后激活值大部分都分布到了饱和阶段,就是值分布在两端
+
 N_SAMPLES = 2000
 x_data = np.linspace(-7, 10, N_SAMPLES)[:, np.newaxis]
 x_noise = np.random.normal(0, 2, x_data.shape)
