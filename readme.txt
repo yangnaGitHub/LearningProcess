@@ -9,6 +9,7 @@
  face-recognition:人脸识别相关
  function:一些算法和功能
  golang:go语言相关
+ julia:julia语言相关
  ml:基本机器学习过程
  module:一些模型的学习,包括cnn,gan,crf等
  python:python学习过程

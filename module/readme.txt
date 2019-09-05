@@ -1,7 +1,7 @@
 # 学习过程记录
 
 目录结构: 
- attention:attention和transformer相关
+ attention+transformer:attention和transformer相关
  cnn:卷积相关
  crf+hmm+memm+em:随机场,HMM和EM算法相关
  dqn:强化学习相关
